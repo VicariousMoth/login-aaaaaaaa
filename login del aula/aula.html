@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login or Register</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div id="app">
+        <div id="cuadro">
+          <div id=titulo>
+            <h1>Aula remastered</h1>
+          </div>
+            <div id = "texto">
+              <form action="">
+                  <p>Correo electrónico</p>
+                  <input type="email">
+                  <p>Contraseña</p>
+                  <input type="password"><br>
+                  <button id="register">Registrarse</button>
+                  <button id="login">Ingresar</button>
+              </form>
+            </div>
+            <div id="imagen">
+              <img src="images/invert.png">
+            </div>
+        </div>
+    </div>
+  </body>
+  <script>
+    function procesamientoDeDiagonal() {
+      var width = $(window).innerWidth();
+      var height = $(window).innerHeight();
+      var calculo = Math.atan(height / width);
+      $("#app").css({
+        background: `linear-gradient(-${calculo}rad,#007AF9 0%,#007AF9 50%, white 50%,white 100%)`,
+      });
+    }
+
+    $(document).ready(function () {
+      $(window).on("load", procesamientoDeDiagonal);
+      $(window).on("resize", procesamientoDeDiagonal);
+    });
+  </script>
+</html>

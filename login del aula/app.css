@@ -1,0 +1,23 @@
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#cuadro{
+  background-color: #ffffff;
+  display: flex;
+  box-shadow: 5px 16px 12px 8px rgba(0,0,0,0.5);
+}
+#titulo{
+  width: auto;
+  height: 15%;
+  background-color: #007AF9;
+}
+#texto{
+  display: flex;
+}
+#imagen{
+  display: flex;
+}
