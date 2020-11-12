@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login or Register</title>
+    <script src="https://kit.fontawesome.com/5b04273445.js" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="container-form">
+          <h1>Inicia sesión o registrate.</h1>
+          <form action="/processLogin" method="post">
+            
+            <div class="container-input">
+              <i class="fas fa-user transition-ease  form-icon"></i>
+              <label class="transition-ease " for="email"></i> Email</label>
+              <input id="email" class="transition-ease " type="email" required/>
+            </div>
+            <div class="container-input">
+              <i class="fas fa-key transition-ease form-icon"></i>
+              <label class="transition-ease " for="pass"></i> Contraseña</label>
+              <input id="pass" class="transition-ease " type="password" required/>
+            </div>
+          </form>
+          <div class="container-button">
+            <a href="">
+              <button class="change-url transition-ease">Registrarte</button>
+            </a>
+            <button id="btn-input" class="transition-ease">Ingresar</button>
+          </div>
+        </div>
+        <div class="container-image">
+          <img src="images/invert.png" alt="">
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function procesamientoDeDiagonal() {
+      var width = $(window).innerWidth();
+      var height = $(window).innerHeight();
+      var calculo = Math.atan(height / width);
+      $("#app").css({
+        background: `linear-gradient(-${calculo}rad,#007AF9 0%,#007AF9 50%, white 50%,white 100%)`,
+      });
+    }
+
+    function comprobarInput(){
+      var flag = true;
+      $.each($(".container-input input"),function (index,item){
+        if($(item).val() === ""){
+            alert("Rellena todos los campos.");
+            flag = false
+          }
+      })
+      return flag;
+    }
+
+    $(document).ready(function () {
+      $(window).on("load", procesamientoDeDiagonal);
+      $(window).on("resize", procesamientoDeDiagonal);
+      $.each($(".container-input input"),function (index,item){
+        if($(item).val() !== ""){
+            $(item).parent().addClass("active")
+          }
+      })
+
+
+      $(".container-input input").focus(function () {
+        $(this).parent().addClass("active");
+      });
+      $(".container-input input").blur(function(){
+          if($(this).val() === ""){
+            $(this).parent().removeClass("active")
+          }
+      });
+
+      $("#pass").keypress(function (e){
+        if(e.keyCode === 13 && comprobarInput()){
+          $(".container-form form").submit();
+        };
+      });
+      $("#btn-input").click(function(){
+        if(comprobarInput()){
+          $(".container-form form").submit();
+        }
+      });
+    });
+  </script>
+</html>
